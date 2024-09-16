@@ -1,0 +1,1164 @@
+<?php
+function custom_registration_form() {
+    if (is_user_logged_in()) {
+//          wp_redirect(home_url());
+// 		exit;
+// 		return;
+    }
+    ?>
+
+<form id="custom_registration_form" method="POST" action="">
+    <div class="input-container">
+        <input type="text" id="first_name" name="first_name" class="floating-input" placeholder=" " required>
+        <label for="first_name" class="floating-label">First Name</label>
+    </div>
+    <div class="error-message" id="first_name_error"></div>
+
+    <div class="input-container">
+        <input type="text" id="last_name" name="last_name" class="floating-input" placeholder=" " >
+        <label for="last_name" class="floating-label">Last Name</label>
+    </div>
+    <div class="error-message" id="last_name_error"></div>
+
+    <div class="input-container">
+        <input type="email" id="email" name="email" class="floating-input" placeholder=" " required>
+        <label for="email" class="floating-label">Email</label>
+    </div>
+    <div class="error-message" id="email_error"></div>
+
+    <div class="input-container password-container">
+    <input type="password" id="passwordd" name="password" class="floating-input" placeholder=" " required oninput="toggleIconVisibilityy('passwordd', 'passwordd_icon')">
+    <label for="passwordd" class="floating-label">Password</label>
+    <!-- For showing password -->
+<span class="toggle-password" id="passwordd_icon" onclick="togglePassword('passwordd', 'passwordd_icon', 'passwordd_hide_icon')" style="display:none;">
+    <!-- SVG ICON FOR SHOWING PASSWORD -->
+    <svg style="margin-right:15px !important;" xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 41 31" fill="none">
+        <path d="M2 15.3333C2 15.3333 8.66667 2 20.3333 2C32 2 38.6667 15.3333 38.6667 15.3333C38.6667 15.3333 32 28.6667 20.3333 28.6667C8.66667 28.6667 2 15.3333 2 15.3333Z" stroke="#708253" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M20.3359 20.332C23.0974 20.332 25.3359 18.0935 25.3359 15.332C25.3359 12.5706 23.0974 10.332 20.3359 10.332C17.5745 10.332 15.3359 12.5706 15.3359 15.332C15.3359 18.0935 17.5745 20.332 20.3359 20.332Z" stroke="#708253" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+</span>
+
+<!-- For hiding password -->
+<span class="toggle-password" id="passwordd_hide_icon" onclick="togglePassword('passwordd', 'passwordd_icon', 'passwordd_hide_icon')" style="display:none; padding-right:15px;">
+    <!-- SVG ICON FOR HIDING PASSWORD -->
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g clip-path="url(#clip0_1568_4717)">
+            <path d="M17.94 17.94C16.2306 19.243 14.1491 19.9649 12 20C5 20 1 12 1 12C2.24389 9.68192 3.96914 7.65663 6.06 6.06003M9.9 4.24002C10.5883 4.0789 11.2931 3.99836 12 4.00003C19 4.00003 23 12 23 12C22.393 13.1356 21.6691 14.2048 20.84 15.19M14.12 14.12C13.8454 14.4148 13.5141 14.6512 13.1462 14.8151C12.7782 14.9791 12.3809 15.0673 11.9781 15.0744C11.5753 15.0815 11.1752 15.0074 10.8016 14.8565C10.4281 14.7056 10.0887 14.4811 9.80385 14.1962C9.51897 13.9113 9.29439 13.572 9.14351 13.1984C8.99262 12.8249 8.91853 12.4247 8.92563 12.0219C8.93274 11.6191 9.02091 11.2219 9.18488 10.8539C9.34884 10.4859 9.58525 10.1547 9.88 9.88003" stroke="#708352" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M1 1L23 23" stroke="#708352" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </g>
+        <defs>
+            <clipPath id="clip0_1568_4717">
+                <rect width="24" height="24" fill="white"></rect>
+            </clipPath>
+        </defs>
+    </svg>
+</span>
+
+</div>
+    <div style='margin-bottom:10px;width:45%;' class="error-message" id="password_error"></div>
+    
+  <div class="input-container password-container">
+    <input type="password" id="confirm_password" name="confirm_password" class="floating-input" placeholder=" " required oninput="toggleIconVisibilityy('confirm_password', 'confirm_password_show_icon')">
+    <label for="confirm_password" class="floating-label">Confirm Password</label>
+
+    <!-- For showing password -->
+    <span class="toggle-password" id="confirm_password_show_icon" onclick="togglePassword('confirm_password', 'confirm_password_show_icon', 'confirm_password_hide_icon')" style="display:none;">
+        <!-- SVG ICON FOR SHOWING PASSWORD -->
+        <svg style="margin-right:15px !important;" xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 41 31" fill="none">
+            <path d="M2 15.3333C2 15.3333 8.66667 2 20.3333 2C32 2 38.6667 15.3333 38.6667 15.3333C38.6667 15.3333 32 28.6667 20.3333 28.6667C8.66667 28.6667 2 15.3333 2 15.3333Z" stroke="#708253" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M20.3359 20.332C23.0974 20.332 25.3359 18.0935 25.3359 15.332C25.3359 12.5706 23.0974 10.332 20.3359 10.332C17.5745 10.332 15.3359 12.5706 15.3359 15.332C15.3359 18.0935 17.5745 20.332 20.3359 20.332Z" stroke="#708253" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </span>
+
+    <!-- For hiding password -->
+    <span class="toggle-password" id="confirm_password_hide_icon" onclick="togglePassword('confirm_password', 'confirm_password_show_icon', 'confirm_password_hide_icon')" style="display:none;padding-right:15px;">
+        <!-- SVG ICON FOR HIDING PASSWORD -->
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_1568_4717)">
+                <path d="M17.94 17.94C16.2306 19.243 14.1491 19.9649 12 20C5 20 1 12 1 12C2.24389 9.68192 3.96914 7.65663 6.06 6.06003M9.9 4.24002C10.5883 4.0789 11.2931 3.99836 12 4.00003C19 4.00003 23 12 23 12C22.393 13.1356 21.6691 14.2048 20.84 15.19M14.12 14.12C13.8454 14.4148 13.5141 14.6512 13.1462 14.8151C12.7782 14.9791 12.3809 15.0673 11.9781 15.0744C11.5753 15.0815 11.1752 15.0074 10.8016 14.8565C10.4281 14.7056 10.0887 14.4811 9.80385 14.1962C9.51897 13.9113 9.29439 13.572 9.14351 13.1984C8.99262 12.8249 8.91853 12.4247 8.92563 12.0219C8.93274 11.6191 9.02091 11.2219 9.18488 10.8539C9.34884 10.4859 9.58525 10.1547 9.88 9.88003" stroke="#708352" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                <path d="M1 1L23 23" stroke="#708352" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            </g>
+            <defs>
+                <clipPath id="clip0_1568_4717">
+                    <rect width="24" height="24" fill="white"></rect>
+                </clipPath>
+            </defs>
+        </svg>
+    </span>
+</div>
+
+    <div style='margin-bottom:10px;' class="error-message" id="confirm_password_error"></div>
+
+    <p style='text-align:center'>
+        <input class='custom-hover-btn mg' style="border: none; background: #FFF051; color: #2E3C22; padding: 5px 15px; font-size: 16px; cursor: pointer;" type="submit" name="submit" value="REGISTER" onclick="return validateForm(event)">
+    </p>
+</form>
+
+
+<script>
+function togglePassword(passwordId, showIconId, hideIconId) {
+    var passwordField = document.getElementById(passwordId);
+    var showIcon = document.getElementById(showIconId);
+    var hideIcon = document.getElementById(hideIconId);
+    var isPassword = passwordField.getAttribute('type') === 'password';
+
+    if (isPassword) {
+        passwordField.setAttribute('type', 'text');
+        showIcon.style.display = 'none';
+        hideIcon.style.display = 'inline';
+    } else {
+        passwordField.setAttribute('type', 'password');
+        showIcon.style.display = 'inline';
+        hideIcon.style.display = 'none';
+    }
+}
+
+
+	function toggleIconVisibilityy(passwordId, iconId) {
+    var passwordField = document.getElementById(passwordId);
+    var icon = document.getElementById(iconId);
+    if (passwordField.value.length > 0) {
+        icon.style.display = 'inline';
+    } else {
+        icon.style.display = 'none';
+    }
+}
+document.addEventListener("DOMContentLoaded", function() {
+    var emailExistsError = document.getElementById('email_exists_error');
+    var passwordMatchError = document.getElementById('password_match_error');
+    var emailError = document.getElementById('email_error');
+    var confirmPasswordError = document.getElementById('confirm_password_error');
+// 	var emailExistsErrorE = null;
+	    if (emailExistsError) {
+        emailError.textContent = emailExistsError.value;
+        emailError.style.display = 'block';
+		emailError.style.paddingBottom = '10px';
+		   	emailError.style.marginTop = '-20px';
+
+	
+		   setTimeout(function() {
+                // Get the elements by ID and class
+                var tab1TitleElement = document.getElementById('e-n-tab-title-2462720991');
+                var tabTitleElement = document.getElementById('e-n-tab-title-2462720992');
+                var abcdElement = document.querySelector('.abcd');
+                var defgElement = document.querySelector('.defg');
+
+                // Check if elements exist before proceeding
+                if (tab1TitleElement && tabTitleElement) {
+                    tab1TitleElement.setAttribute('aria-selected', 'true'); // Correct the typo
+                    tabTitleElement.setAttribute('aria-selected', 'false');
+                }
+
+                if (abcdElement && defgElement) {
+                    abcdElement.classList.add('e-active');
+                    defgElement.classList.remove('e-active');
+                }
+            }, 100);
+	   };   
+		  
+
+ 
+
+//     if (passwordMatchError) {
+//         confirmPasswordError.textContent = passwordMatchError.value;
+//         confirmPasswordError.style.display = 'block';
+//     }
+});
+
+function validateForm(event) {
+// 	    var emailExistsError = document.getElementById('email_exists_error').value;
+	var firstName = document.getElementById('first_name').value;
+    var lastName = document.getElementById('last_name').value;
+    var password = document.getElementById('passwordd').value
+	var email = document.getElementById('email').value;
+    var confirmPassword = document.getElementById('confirm_password').value;
+    var passwordError = document.getElementById('password_error');
+    var confirmPasswordError = document.getElementById('confirm_password_error');
+    var emailError = document.getElementById('email_error');
+	var firstNameError = document.getElementById('first_name_error');
+    var lastNameError = document.getElementById('last_name_error');
+	
+    passwordError.style.display = 'none';
+    confirmPasswordError.style.display = 'none';
+    emailError.style.display = 'none';
+	firstNameError.style.display = 'none';
+    lastNameError.style.display = 'none';
+	
+    var hasError = false;
+
+    // Password validation rules
+var passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+if (!passwordPattern.test(password)) {
+    passwordError.textContent = 
+        'Password Error: Must be at least 8 characters long, include both uppercase and lowercase letters, at least one digit, and at least one special character (e.g.,@#).';
+    passwordError.style.display = 'block';
+// 	passwordError.style.paddingBottom = '20px';
+	passwordError.style.marginTop = '-30px !important';
+	passwordError.style.marginBottom = '15px !important';
+
+	passwordError.style.lineHeight = '20px';
+	
+    hasError = true;
+}
+//    if (emailExistsError) {
+//         emailError.textContent = emailExistsError.value;
+//         emailError.style.display = 'block';
+// 	   emailError.style.marginTop = '-20px';
+// 	   hasError = true;
+//     }
+    if (password !== confirmPassword) {
+        confirmPasswordError.textContent = 'Password & Confirm Password do not match.';
+        confirmPasswordError.style.display = 'block';
+//         confirmPasswordError.style.paddingBottom = '20px';
+confirmPasswordError.style.marginTop = '-25px';
+        hasError = true;
+    }
+	
+// 	console.log("email", email);
+// 	console.log("IsValid", email_exists(email))
+// 	 if (email_exists(email)) {
+// 		  hasError = true;
+// 	 }
+	
+	if (firstName.trim().length < 2) {
+        firstNameError.textContent = 'First Name must be at least 2 characters long.';
+        firstNameError.style.display = 'block';
+        firstNameError.style.marginTop = '-25px';
+        hasError = true;
+    }
+	const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+if (email.trim().length>=1 && email.trim().length  < 2) {
+    emailError.textContent = 'Email must be at least 2 characters long.';
+    emailError.style.display = 'block';
+    emailError.style.marginTop = '-25px';
+    hasError = true;
+} 
+else if (email.trim().length < 1) {
+    emailError.textContent = 'Email is required.';
+    emailError.style.display = 'block';
+    emailError.style.marginTop = '-25px';
+    hasError = true;
+}
+	else if (!emailPattern.test(email)) {
+    emailError.textContent = 'Please enter a valid email address.';
+    emailError.style.display = 'block';
+    emailError.style.marginTop = '-25px';
+    hasError = true;
+}
+	
+    // Last name validation
+//     if (lastName.trim().length < 2) {
+//         lastNameError.textContent = 'Last Name must be at least 2 characters long.';
+//         lastNameError.style.display = 'block';
+//         lastNameError.style.marginTop = '-20px';
+//         hasError = true;
+//     }
+
+    if (hasError) {
+        event.preventDefault(); 
+        return false;
+    }
+    return true;
+}
+
+
+</script>
+<style>
+
+/* Base Styles (Desktop) */
+.password-container {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 16px;
+    color: #2E3C22;
+}
+
+.error-message {
+    color: red;
+    font-size: 15px;
+    display: none;
+    margin-left: 28%;
+    margin-top: -30px !important;
+    text-align: left !important;
+}
+
+/* Tablet Styles */
+@media (max-width: 768px) {
+    .error-message {
+        margin-left: 10%;
+        padding-top: 10px !important;
+		margin-top:10px !important;
+        font-size: 14px;
+        width: 80% !important;
+    }
+	.mg{
+		margin-top:48px;
+		margin-bottom:-20px;
+	}
+    .toggle-password {
+        right: 8px;
+        font-size: 14px;
+    }
+}
+
+/* Mobile Styles */
+@media (max-width: 480px) {
+    .error-message {
+        margin-left: 8%;
+        font-size: 13px;
+		margin-top:0px !important;
+		
+    }
+
+    .toggle-password {
+        right: 5px;
+        font-size: 12px;
+    }
+}
+	@media (min-width: 769px) and (max-width: 1322px) {
+    .error-message {
+        margin-left: 20%;
+        font-size: 14px;
+        padding-top: 5px;
+        width: 60% !important;
+    }
+
+    .toggle-password {
+        right: 9px;
+        font-size: 15px;
+    }
+}
+	</style>
+
+    <?php
+}
+
+add_shortcode('custom_registration_form', 'custom_registration_form');
+
+function custom_registration() {
+    if (isset($_POST['submit'])) {
+        $first_name = sanitize_text_field($_POST['first_name']);
+        $last_name = sanitize_text_field($_POST['last_name']);
+        $email = sanitize_email($_POST['email']);
+        $password = sanitize_text_field($_POST['password']);
+        $confirm_password = sanitize_text_field($_POST['confirm_password']);
+
+        // Check if passwords match
+        if ($password !== $confirm_password) {
+            echo '<input type="hidden" id="password_match_error" value="Passwords do not match.">';
+        }
+
+        // Check if the email already exists
+        if (email_exists($email)) {
+            echo '<input type="hidden" id="email_exists_error" value="An account with this email already exists. Please log in.">';
+        } else {
+            // Proceed with user registration if no errors
+            $username = sanitize_user(current(explode('@', $email)), true);
+            $username = wp_unique_username($username);
+
+            $userdata = array(
+                'user_login' => $username,
+                'first_name' => $first_name,
+                'last_name' => $last_name,
+                'user_email' => $email,
+                'user_pass' => $password,
+                'meta_input' => array(
+                    'email_verified' => 0,
+                ),
+            );
+
+            $user_id = wp_insert_user($userdata);
+
+            if (!is_wp_error($user_id)) {
+                $verification_code = str_pad(wp_rand(100000, 999999), 6, '0', STR_PAD_LEFT);
+                update_user_meta($user_id, 'email_verification_code', $verification_code);
+                wp_mail($email, 'Email Verification Code', 'Your verification code is: ' . $verification_code);
+
+                wp_redirect(home_url('/email-verification?user_id=' . $user_id));
+                exit;
+            } else {
+                echo '<input type="hidden" id="email_exists_error" value=". $user_id->get_error_message() .">';
+            }
+        }
+    }
+}
+add_action('init', 'custom_registration');
+
+
+
+
+function wp_unique_username($username) {
+    $i = 1;
+    $original_username = $username;
+
+    while (username_exists($username)) {
+        $username = $original_username . $i;
+        $i++;
+    }
+
+    return $username;
+}
+
+
+function custom_email_verification_form() {
+    if (isset($_GET['user_id'])) {
+        ?>
+        <form id="custom_email_verification_form" method="POST" action="">
+            <p style='font-family: Goudy Old Style; font-size: 36px; font-weight: 400; line-height: 40px; text-align: center; color: #708352 !important;'>
+                <label for="email_verification_code">VERIFY YOUR EMAIL ADDRESS</label>
+            </p>
+            <p style='text-align:center; font-weight:600 !important; margin-top:-4px'>
+                To verify your email, just enter the code we sent to your inbox.
+            </p>
+            
+            <div style='margin-bottom:10px;' class="otp-container">        
+                <?php for ($i = 0; $i < 6; $i++): ?>
+                    <input type="text" name="email_verification_code[]" maxlength="1" required>
+                <?php endfor; ?>
+            </div>
+						<div style='text-align:center' class="error-message" id="email_verification_code_error"></div>
+
+            <p style='text-align:center;'>
+                <label for="enable_2fa">
+                    <input type="checkbox" name="enable_2fa" value="1"> Allow 2-step verification
+                </label>
+            </p>
+			<div style='text-align:center' class="error-message" id="email_verification_code_error"></div>
+            <input type="hidden" name="user_id" value="<?php echo esc_attr($_GET['user_id']); ?>">
+            <p style="text-align: center; margin-top: 10%;">
+                <a href="?user_id=<?php echo esc_attr($_GET['user_id']); ?>&resend_code=2" style="margin-left: 10px; text-decoration: underline; color: #1A1919; font-weight: bold !important; margin-right:10px;">Resend</a>
+                <input type="submit" name="verify_email" value="VERIFY" style="border: none; background: #FFF051; color: #2E3C22; padding: 5px 15px; font-size: 16px; cursor: pointer;">
+            </p>
+        </form>
+        <?php
+    }
+}
+add_shortcode('custom_email_verification_form', 'custom_email_verification_form');
+
+
+
+function verify_email_code_registration() {
+    $error_message = '';
+
+    if (isset($_POST['verify_email'])) {
+        $user_id = intval($_POST['user_id']);
+        $user = get_user_by('id', $user_id);
+        $email_verification_code = isset($_POST['email_verification_code']) ? implode('', array_map('sanitize_text_field', $_POST['email_verification_code'])) : '';
+        $enable_2fa = isset($_POST['enable_2fa']) ? 1 : 0;
+
+        if ($user && get_user_meta($user->ID, 'email_verification_code', true) == $email_verification_code) {
+            update_user_meta($user->ID, 'email_verified', 1); // Mark email as verified
+            update_user_meta($user->ID, 'enable_2fa', $enable_2fa); // Set 2FA preference
+            delete_user_meta($user->ID, 'email_verification_code'); // Remove verification code
+            wp_redirect(home_url('/login-register-v2')); // Redirect to login page after verification
+            exit;
+        } else {
+            $error_message = 'Invalid verification code.';
+        }
+    }
+
+    if (isset($_GET['resend_code']) && $_GET['resend_code'] == '2') {
+        if (isset($_GET['user_id'])) {
+            $user_id = intval($_GET['user_id']);
+            $user = get_user_by('id', $user_id);
+
+            if ($user) {
+                // Generate a new 6-digit numeric code
+                $new_code = str_pad(wp_rand(100000, 999999), 6, '0', STR_PAD_LEFT);
+                update_user_meta($user->ID, 'email_verification_code', $new_code); // Save new code
+                wp_mail($user->user_email, 'Your New Email Verification Code', 'Your new verification code is: ' . $new_code);
+                $error_message = 'A new verification code has been sent to your email.';
+            } else {
+                $error_message = 'Invalid user.';
+            }
+        }
+    }
+
+    // If there's an error message, display it in the form
+    if ($error_message) {
+        ?>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var errorDiv = document.getElementById('email_verification_code_error');
+                if (errorDiv) {
+                    errorDiv.textContent = <?php echo json_encode($error_message); ?>;
+                    errorDiv.style.display = 'block';
+                }
+            });
+        </script>
+<style>
+.otp-container {
+    position: relative;
+}
+
+.error-message {
+    color: red;
+    font-size: 15px;
+	margin-top:-10px;
+    margin-bottom: 20px;
+    text-align: center;
+    display: none; /* Initially hidden */
+}
+
+input[type="text"] {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    margin: 0 5px;
+}
+</style>
+
+        <?php
+    }
+}
+add_action('init', 'verify_email_code_registration');
+
+
+function custom_login() {
+    $error_message = '';
+
+    if (isset($_POST['login_submit'])) {
+        $email = sanitize_email($_POST['username']);  // Assume the user is using their email to log in
+        $password = sanitize_text_field($_POST['password']);
+        $remember_me = isset($_POST['remember_me']) ? true : false;
+
+        // Check if the user exists by email
+        $user = get_user_by('email', $email);
+        if (!$user) {
+            $error_message = 'The email does not exist.Please Register';
+        } else {
+            // Authenticate user by email
+            $user = wp_authenticate($user->user_login, $password);
+
+            if (!is_wp_error($user)) {
+                $email_verified = get_user_meta($user->ID, 'email_verified', true);
+
+                // Uncomment this block if email verification is required
+                /*
+                if (!$email_verified) {
+                    $error_message = 'Your email address is not verified. Please check your email for the verification link.';
+                    return;
+                }
+                */
+if (!$email_verified) {
+    // Generate a new 6-digit verification code
+    $verification_code = str_pad(wp_rand(100000, 999999), 6, '0', STR_PAD_LEFT);
+    
+    // Save the verification code in user meta
+    update_user_meta($user->ID, 'email_verification_code', $verification_code);
+    
+    // Send the verification code to the user's email
+    wp_mail($user->user_email, 'Email Verification Code', 'Your email verification code is: ' . $verification_code);
+    
+    // Redirect to the email verification page
+    wp_redirect(home_url('/email-verification?user_id=' . $user->ID));
+    exit;
+}
+
+                $enable_2fa = get_user_meta($user->ID, 'enable_2fa', true);
+
+                if ($enable_2fa) {
+                    $verification_code = wp_rand(100000, 999999);
+                    set_transient('2fa_code_' . $user->user_email, $verification_code, 15 * MINUTE_IN_SECONDS);
+
+                    wp_mail($user->user_email, 'Your Verification Code', 'Your verification code is: ' . $verification_code);
+
+                    // Redirect to the 2FA verification page
+                    wp_redirect(home_url('/2fa-verification?user_id=' . $user->ID));
+                    exit;
+                } else {
+                    // Use wp_signon to set the remember me cookie
+                    $creds = array(
+                        'user_login'    => $user->user_login, // Use the username associated with the email
+                        'user_password' => $password,
+                        'remember'      => $remember_me
+                    );
+                    $user = wp_signon($creds, false);
+
+                    if (!is_wp_error($user)) {
+                        wp_redirect(home_url()); // Redirect after successful login
+                        exit;
+                    } else {
+                        $error_message = 'Invalid email or password.';
+                    }
+                }
+            } else {
+                $error_message = 'Invalid email or password.';
+            }
+        }
+    }
+
+    if (isset($_POST['forgot_password'])) {
+        $user_email = sanitize_email($_POST['forgot_email']);
+        $user = get_user_by('email', $user_email);
+
+        if ($user) {
+            $otp_code = wp_rand(100000, 999999);
+            set_transient('forgot_password_code_' . $user_email, $otp_code, 15 * MINUTE_IN_SECONDS);
+
+            wp_mail($user_email, 'Password Reset OTP', 'Your OTP code is: ' . $otp_code);
+
+            // Redirect to the OTP verification page
+            wp_redirect(home_url('/otp-verification?user_email=' . urlencode($user_email)));
+            exit;
+        } else {
+            $error_message = 'No user found with this email address.';
+        }
+    }
+
+    // Pass error message to JavaScript if needed
+    if ($error_message) {
+        ?>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var errorDiv = document.getElementById('login_error_message');
+                if (errorDiv) {
+                    errorDiv.textContent = <?php echo json_encode($error_message); ?>;
+                    errorDiv.style.display = 'block';
+                }
+            });
+        </script>
+        <?php
+    }
+}
+
+add_action('init', 'custom_login');
+
+
+function custom_login_form() {
+    if (is_user_logged_in()) {
+//          wp_redirect(home_url());
+// 		exit;
+// 		return;
+    }
+    ?>
+    <div class="container">
+        <!-- Login Form -->
+        <form id="custom_login_form" method="POST" action="" >
+            <div class="input-container">
+                <input type="text" id="username" name="username" class="floating-input" placeholder=" " required>
+                <label for="username" class="floating-label">Email</label>
+            </div>
+          <div class="input-container password-container">
+    <input type="password" id="passworddd" name="password" class="floating-input" placeholder=" " required oninput="toggleIconVisibilityy('passworddd', 'passworddd_icon')">
+    <label for="passwordd" class="floating-label">Password</label>
+    <!-- For showing password -->
+<span class="toggle-password" id="passworddd_icon" onclick="togglePassword('passworddd', 'passworddd_icon', 'passworddd_hide_icon')" style="display:none;">
+    <!-- SVG ICON FOR SHOWING PASSWORD -->
+    <svg style="margin-right:15px !important;" xmlns="http://www.w3.org/2000/svg" width="30" height="20" viewBox="0 0 41 31" fill="none">
+        <path d="M2 15.3333C2 15.3333 8.66667 2 20.3333 2C32 2 38.6667 15.3333 38.6667 15.3333C38.6667 15.3333 32 28.6667 20.3333 28.6667C8.66667 28.6667 2 15.3333 2 15.3333Z" stroke="#708253" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M20.3359 20.332C23.0974 20.332 25.3359 18.0935 25.3359 15.332C25.3359 12.5706 23.0974 10.332 20.3359 10.332C17.5745 10.332 15.3359 12.5706 15.3359 15.332C15.3359 18.0935 17.5745 20.332 20.3359 20.332Z" stroke="#708253" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+</span>
+
+<!-- For hiding password -->
+<span class="toggle-password" id="passworddd_hide_icon" onclick="togglePassword('passworddd', 'passworddd_icon', 'passworddd_hide_icon')" style="display:none; padding-right:15px;">
+    <!-- SVG ICON FOR HIDING PASSWORD -->
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g clip-path="url(#clip0_1568_4717)">
+            <path d="M17.94 17.94C16.2306 19.243 14.1491 19.9649 12 20C5 20 1 12 1 12C2.24389 9.68192 3.96914 7.65663 6.06 6.06003M9.9 4.24002C10.5883 4.0789 11.2931 3.99836 12 4.00003C19 4.00003 23 12 23 12C22.393 13.1356 21.6691 14.2048 20.84 15.19M14.12 14.12C13.8454 14.4148 13.5141 14.6512 13.1462 14.8151C12.7782 14.9791 12.3809 15.0673 11.9781 15.0744C11.5753 15.0815 11.1752 15.0074 10.8016 14.8565C10.4281 14.7056 10.0887 14.4811 9.80385 14.1962C9.51897 13.9113 9.29439 13.572 9.14351 13.1984C8.99262 12.8249 8.91853 12.4247 8.92563 12.0219C8.93274 11.6191 9.02091 11.2219 9.18488 10.8539C9.34884 10.4859 9.58525 10.1547 9.88 9.88003" stroke="#708352" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M1 1L23 23" stroke="#708352" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        </g>
+        <defs>
+            <clipPath id="clip0_1568_4717">
+                <rect width="24" height="24" fill="white"></rect>
+            </clipPath>
+        </defs>
+    </svg>
+</span>
+
+</div>
+			            <div id="login_error_message" class="error-message"></div>
+
+            <div class="input-container">
+                <p style='text-align:center'>
+                    <input type="checkbox" id="remember_me" name="remember_me">
+                    <label for="remember_me">Remember Me</label>
+                    <a style='margin-left:5%; text-decoration:underline;' href="<?php echo esc_url(home_url('/forgot-password')); ?>" id="forgot-password-link">Forgot Password?</a>
+                </p>
+            </div>
+            <p style='text-align:center;margin-bottom:0;'>
+                <input style="border: none; background: #FFF051; color: #2E3C22; padding: 5px 15px; font-size: 16px; cursor: pointer;" type="submit" name="login_submit" value="LOGIN" onclick="validateLoginFormm(event)">
+            </p>
+        </form>
+    </div>
+    <script>
+        function togglePassword(passwordId, showIconId, hideIconId) {
+    var passwordField = document.getElementById(passwordId);
+    var showIcon = document.getElementById(showIconId);
+    var hideIcon = document.getElementById(hideIconId);
+    var isPassword = passwordField.getAttribute('type') === 'password';
+
+    if (isPassword) {
+        passwordField.setAttribute('type', 'text');
+        showIcon.style.display = 'none';
+        hideIcon.style.display = 'inline';
+    } else {
+        passwordField.setAttribute('type', 'password');
+        showIcon.style.display = 'inline';
+        hideIcon.style.display = 'none';
+    }
+}
+
+
+	function toggleIconVisibilityy(passwordId, iconId) {
+    var passwordField = document.getElementById(passwordId);
+    var icon = document.getElementById(iconId);
+    if (passwordField.value.length > 0) {
+        icon.style.display = 'inline';
+    } else {
+        icon.style.display = 'none';
+    }
+}
+		function validateLoginFormm(event) {
+			console.log("i");
+    var username = document.getElementById('username').value;
+    var password = document.getElementById('passworddd').value;
+    var loginErrorMessage = document.getElementById('login_error_message');
+    
+    loginErrorMessage.style.display = 'none';
+
+    var hasError = false;
+
+    if (username.trim().length < 2) {
+        loginErrorMessage.textContent = 'Username or Email is required.';
+        loginErrorMessage.style.display = 'block';
+        loginErrorMessage.style.marginTop = '-20px';
+        hasError = true;
+    } else {
+        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(username)) {
+            loginErrorMessage.textContent = 'Please enter a valid email address.';
+            loginErrorMessage.style.display = 'block';
+            loginErrorMessage.style.marginTop = '-20px';
+            hasError = true;
+        }
+    }
+    if (password.trim().length < 1) {
+        loginErrorMessage.textContent = 'Password is required';
+        loginErrorMessage.style.display = 'block';
+        loginErrorMessage.style.marginTop = '-20px';
+        hasError = true;
+    }
+
+    if (hasError) {
+        event.preventDefault();
+        return false;
+    }
+
+    return true;
+}
+    </script>
+    <style>
+        .password-containerr {
+            position: relative;
+        }
+
+        .toggle-passwordd {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 16px;
+            color: #2E3C22;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 15px;
+/* 			margin-top:2%; */
+			margin-top:-30px !important;
+			margin-bottom:10px !important;
+			
+/*             margin-bottom: 20px; */
+            text-align: center;
+            display: none; /* Initially hidden */
+        }
+		
+@media (max-width: 480px) {
+    #remember_me + label,
+    #forgot-password-link {
+        font-size: 14px;
+    }
+	.error-message{
+		margin-top:-25px !important;
+		width:100% !important;
+		margin-left:10px !important;
+		line-height: 15px !important;
+		margin-bottom:15px !important;
+	}
+}
+		@media (min-width: 481px) and (max-width: 1909px) {
+			.error-message {
+				margin-top:-20px !important;
+			}}
+
+    </style>
+    <?php
+}
+
+add_shortcode('custom_login_form', 'custom_login_form');
+
+
+function forgot_password_form() {
+    ?>
+    <form method="POST" action="">
+        <div class="input-container">
+            <input type="email" id="forgot_email" name="forgot_email" class="floating-input" placeholder=" " required>
+            <label for="forgot_email" class="floating-label">Email</label>
+        </div>
+        <p style='text-align:center'>
+            <input style="border: none; background: #FFF051; color: #2E3C22; padding: 5px 15px; font-size: 16px; cursor: pointer;" type="submit" name="forgot_password" value="SEND">
+        </p>
+    </form>
+    <?php
+}
+
+add_shortcode('forgot_password_form', 'forgot_password_form');
+
+
+function custom_2fa_verification_form($atts) {
+    if (isset($_GET['user_id'])) {
+        ?>
+        <form id="custom_2fa_verification_form" method="POST" action="">
+            <p style='font-family: Goudy Old Style; font-size: 36px; font-weight: 400; line-height: 40px; text-align: center; color: #708352 !important;'>
+                <label for="2fa_code">TWO FACTOR AUTHENTICATION</label>
+            </p>
+            <p style='text-align:center; font-weight:600 !important; margin-top:-4px'>
+                Please enter the verification code we’ve sent to your email address.
+            </p>
+            
+            <div style='margin-bottom:10px;' class="otp-container">
+                <?php for ($i = 0; $i < 6; $i++): ?>
+                    <input type="text" name="2fa_code[]" maxlength="1" required>
+                <?php endfor; ?>
+            </div>
+			<div style='text-align:center' class="error-message" id="2fa_code_error"></div>
+            <input type="hidden" name="user_id" value="<?php echo esc_attr($_GET['user_id']); ?>">
+            <input type="hidden" name="form_id" value="<?php echo esc_attr($atts['form_id']); ?>">
+            <p style="text-align: center; margin-top:10%">
+                <a href="?user_id=<?php echo esc_attr($_GET['user_id']); ?>&resend_code=1" style="margin-left: 10px; text-decoration: underline; color: #1A1919; font-weight: bold !important; margin-right:10px;">Resend</a>
+                <input type="submit" name="verify_2fa" value="VERIFY" style="border: none; background: #FFF051; color: #2E3C22; padding: 5px 15px; font-size: 16px; cursor: pointer;">
+            </p>
+        </form>
+        <?php
+    }
+}
+add_shortcode('custom_2fa_verification_form', 'custom_2fa_verification_form');
+
+
+function handle_custom_2fa_verification() {
+    $error_message = '';
+
+    if (isset($_GET['user_id'])) {
+        $user_id = intval($_GET['user_id']);
+        $user = get_user_by('id', $user_id);
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['verify_2fa'])) {
+            $input_code = implode('', $_POST['2fa_code']);
+            $saved_code = get_transient('2fa_code_' . $user->user_email);
+
+            if ($input_code === $saved_code) {
+                // Verification successful
+                delete_transient('2fa_code_' . $user->user_email); // Clean up the code
+                wp_set_auth_cookie($user_id); // Log in the user
+                wp_redirect(home_url()); // Redirect to the home page
+                exit;
+            } else {
+                $error_message = 'Incorrect verification code. Please try again.';
+            }
+        }
+
+        if (isset($_GET['resend_code']) && $_GET['resend_code'] == '1') {
+            if ($user) {
+                // Generate a new 6-digit numeric code
+                $new_code = str_pad(wp_rand(100000, 999999), 6, '0', STR_PAD_LEFT);
+
+                wp_mail($user->user_email, 'Your New 2FA Verification Code', 'Your new 2FA verification code is: ' . $new_code);
+                set_transient('2fa_code_' . $user->user_email, $new_code, 15 * MINUTE_IN_SECONDS);
+                $error_message = 'A new verification code has been sent to your email.';
+            } else {
+                $error_message = 'Invalid user.';
+            }
+        }
+
+        // If there's an error message, display it in the form
+        if ($error_message) {
+            ?>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    var errorDiv = document.getElementById('2fa_code_error');
+                    if (errorDiv) {
+                        errorDiv.textContent = <?php echo json_encode($error_message); ?>;
+                        errorDiv.style.display = 'block';
+                    }
+                });
+            </script>
+            <style>
+            .otp-container {
+                position: relative;
+            }
+
+            .error-message {
+                color: red;
+                font-size: 15px;
+                margin-bottom: 20px;
+                text-align: center;
+                display: none; /* Initially hidden */
+            }
+
+            input[type="text"] {
+                width: 40px;
+                height: 40px;
+                text-align: center;
+                margin: 0 5px;
+            }
+				@media screen and (max-width: 768px) {
+    .otp-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .error-message {
+        font-size: 14px;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+    input[type="text"] {
+        width: 35px;
+        height: 35px;
+        margin: 0 3px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .otp-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .error-message {
+        font-size: 12px;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    input[type="text"] {
+        width: 30px;
+        height: 30px;
+        margin: 0 2px;
+    }
+}
+
+            </style>
+            <?php
+        }
+    }
+}
+add_action('init', 'handle_custom_2fa_verification');
+
+
+function custom_otp_verification_form() {
+    $error_message = '';
+
+    if (isset($_GET['user_email'])) {
+        if (isset($_POST['verify_otp'])) {
+            // Process OTP Verification
+            $user_email = sanitize_email($_POST['user_email']);
+            $otp_code = implode('', array_map('sanitize_text_field', $_POST['otp_verification_code']));
+            $stored_otp_code = get_transient('forgot_password_code_' . $user_email);
+
+            if ($otp_code === $stored_otp_code) {
+                // OTP verified, show password change form
+                ?>
+                <style>
+                    #custom_otp_verification_form {
+                        display: none;
+                    }
+                    #new-pass {
+                        display: block;
+                    }
+                </style>
+                <?php
+                display_password_change_form($user_email); // Call the function to display the password change form
+            } else {
+                $error_message = 'Invalid OTP. Please try again.';
+                display_otp_form($error_message, $user_email); // Display OTP form with an error message
+            }
+        } elseif (isset($_POST['change_password'])) {
+            // Process Password Change
+            $user_email = sanitize_email($_POST['user_email']);
+            $new_password = sanitize_text_field($_POST['new_password']);
+            $confirm_password = sanitize_text_field($_POST['confirm_password']);
+
+            if ($new_password === $confirm_password) {
+                ?>
+                <style>
+                    #custom_otp_verification_form {
+                        display: none;
+                    }
+	#iconn{
+		display:none;
+	}
+
+                </style>
+                <?php
+                $user = get_user_by('email', $user_email);
+
+                if ($user) {
+                    wp_set_password($new_password, $user->ID);
+                    echo '<p style="text-align:center;padding-bottom:5%;">Your password has been changed successfully.<br> <a href="' . home_url('/login-register-v2') . '" style="margin-top:2%;display: inline-block; text-align: center; text-decoration: none; border: none; background: #FFF051; color: #2E3C22; padding: 5px 15px; font-size: 16px; cursor: pointer;">LOGIN</a></p>';
+                } else {
+                    echo '<p>No user found with this email address.</p>';
+                }
+            } else {
+                // Passwords do not match, display error and keep the password form visible
+                $error_message = 'Password & Confirm Password do not match.';
+                ?>
+                <style>
+                    #custom_otp_verification_form {
+                        display: none;
+                    }
+                </style>
+                <?php
+                display_password_change_form($user_email, $error_message); // Display the password change form with an error message
+            }
+        } else {
+            // Show OTP form with error message if it exists
+            display_otp_form($error_message, $_GET['user_email']);
+        }
+    }
+}
+add_shortcode('custom_otp_verification_form', 'custom_otp_verification_form');
+
+function display_password_change_form($user_email, $error_message = '') {
+    ?>
+<style>
+	#iconn{
+		display:none;
+	}
+	@media only screen and (max-width: 1024px) {
+    #custom_password_change_form p {
+        font-size: 35px !important;
+        line-height: 30px !important;
+        margin-bottom: 6% !important;
+    }
+
+    .input-container {
+        width: 80% !important;
+/*         margin: 0 auto !important; */
+		margin-bottom:20px !important;
+    }
+
+    .floating-input {
+        width: 100% !important;
+        padding: 12px !important;
+        font-size: 16px !important;
+    }
+
+    .floating-label {
+        font-size: 14px !important;
+    }
+
+    #custom_password_change_form input[type="submit"] {
+        padding: 10px 20px !important;
+        font-size: 14px !important;
+        margin-top: 8% !important;
+    }
+
+    /* Specific adjustments for smaller mobile devices (up to 787px) */
+    @media only screen and (max-width: 787px) {
+        #custom_password_change_form p {
+            font-size: 28px !important;
+            line-height: 28px !important;
+        }
+
+        .input-container {
+            width: 80% !important;
+        }
+
+        #custom_password_change_form input[type="submit"] {
+            padding: 8px 18px !important;
+            font-size: 12px !important;
+        }
+    }
+}
+
+</style>
+    <form id="custom_password_change_form" method="POST" action="">
+        <p style='font-family: Goudy Old Style Font; font-size: 55px; font-weight: 300; line-height: 40px; text-align: center; color: #708352 !important;margin-bottom:4%'>
+            <label for="new_passs">NEW PASSWORD</label>
+        </p>
+        <div class="input-container">
+            <input type="password" id="new_password" name="new_password" class="floating-input" placeholder=" " required>
+            <label for="new_password" class="floating-label">New Password</label>
+        </div>
+        <div class="input-container">
+            <input type="password" id="confirm_password" name="confirm_password" class="floating-input" placeholder=" " required>
+            <label for="confirm_password" class="floating-label">Confirm Password</label>
+        </div>
+        <input type="hidden" name="user_email" value="<?php echo esc_attr($user_email); ?>">
+        <?php if (!empty($error_message)) : ?>
+            <p style="color: red;font-size:15px; text-align: left;margin-left:28%"><?php echo esc_html($error_message); ?></p>
+        <?php endif; ?>
+        <p style='text-align:center;'>
+            <input style="border: none; background: #FFF051; color: #2E3C22; padding: 5px 15px; font-size: 16px; cursor: pointer;margin-top:10%;" type="submit" name="change_password" value="UPDATE">
+        </p>
+    </form>
+    <?php
+}
+
+function display_otp_form($error_message, $user_email) {
+    ?>
+    <form id="custom_otp_verification_form" method="POST" action="">
+        <p style='font-family: Goudy Old Style; font-size: 36px; font-weight: 400; line-height: 40px; text-align: center; color: #708352 !important;'>
+            <label for="otp_verification_code">ENTER VERIFICATION CODE</label>
+        </p>
+        <p style='text-align:center;'>
+            Please enter the verification code we’ve sent to your email address.
+        </p>
+        <div class="otp-container">
+            <input type="text" name="otp_verification_code[]" maxlength="1" required>
+            <input type="text" name="otp_verification_code[]" maxlength="1" required>
+            <input type="text" name="otp_verification_code[]" maxlength="1" required>
+            <input type="text" name="otp_verification_code[]" maxlength="1" required>
+            <input type="text" name="otp_verification_code[]" maxlength="1" required>
+            <input type="text" name="otp_verification_code[]" maxlength="1" required>
+        </div>
+        <input type="hidden" name="user_email" value="<?php echo esc_attr($user_email); ?>">
+        <?php if (!empty($error_message)) : ?>
+            <p style="color: red;font-size:15px; text-align: center;margin-top:2%"><?php echo esc_html($error_message); ?></p>
+        <?php endif; ?>
+        <p style='text-align:center;'>
+            <input style="border: none; background: #FFF051; color: #2E3C22; padding: 5px 15px; font-size: 16px; cursor: pointer;margin-top:10%" type="submit" name="verify_otp" value="VERIFY">
+        </p>
+    </form>
+    <?php
+}
+
+add_shortcode('custom_otp_verification_form', 'custom_otp_verification_form');
+
+function redirect_logged_in_user() {
+    if (is_user_logged_in() && is_page('login-register-v2')) {
+        wp_redirect('https://staging-homeopathycollege-chestaging.kinsta.cloud/logged-in-v2'); // Replace with your desired URL
+        exit;
+    }
+}
+add_action('template_redirect', 'redirect_logged_in_user');
+
+
+
+
